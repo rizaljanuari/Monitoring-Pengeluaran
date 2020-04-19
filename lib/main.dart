@@ -39,7 +39,7 @@ class MyHomepage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              color: Colors.yellowAccent,
+              color: Colors.blueAccent, 
               child: Text('Chart'),
             ),
           ),
