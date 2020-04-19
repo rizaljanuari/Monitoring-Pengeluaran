@@ -1,6 +1,7 @@
 # expenses_planner
 
-A new Flutter project.
+Aplikasi perencanaan dalam pengeluaran sehari-hari. Aplikasi ini dapat membantu kita dalam melihat, menyimpan dan memperoleh data mengenai pengeluaran uang yang dihabiskan sehari-hari.
+
 
 ## Getting Started
 
