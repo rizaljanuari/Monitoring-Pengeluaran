@@ -26,6 +26,12 @@ class MyHomepage extends StatelessWidget {
       amount: 200000,
       title: "Belanja Bulanan",
       date: DateTime.now(),
+    ),
+    Transaction(
+      id: "tx3",
+      amount: 8000,
+      title: "Beli Thai Tea",
+      date: DateTime.now(),
     )
   ];
   @override
@@ -39,7 +45,7 @@ class MyHomepage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              color: Colors.blueAccent, 
+              color: Colors.blueAccent,
               child: Text('Chart'),
             ),
           ),
