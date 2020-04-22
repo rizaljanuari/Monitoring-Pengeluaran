@@ -52,7 +52,52 @@ class MyHomepage extends StatelessWidget {
           Column(
               children: transactions.map((tx) {
             return Card(
-              child: Text(tx.title),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 2.0, color: Colors.black),
+                    ),
+                    child: SizedBox(
+                      width: 80,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text("Rp."),
+                          Spacer(),
+                          Text(
+                            //using string interpolation, so i can have a string from number type without adding toSring() function
+                            '${tx.amount}',
+                            // tx.amount.toString(),  <= example if i choose to use without string interpolation
+                        
+                          ),
+                        ],
+                      ),
+                    ),
+                    padding: EdgeInsets.all(6),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        tx.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        tx.date.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             );
           }).toList())
         ],
