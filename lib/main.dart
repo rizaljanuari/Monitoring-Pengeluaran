@@ -1,5 +1,6 @@
 import 'package:expenses_planner/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main(List<String> args) => runApp(MyApp());
 
@@ -34,6 +35,11 @@ class MyHomepage extends StatelessWidget {
       date: DateTime.now(),
     )
   ];
+
+//TextEditingController agar input yang dimasukan langsung disimpan
+final titleController = TextEditingController();
+final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +53,28 @@ class MyHomepage extends StatelessWidget {
             child: Card(
               color: Colors.blueAccent,
               child: Text('Chart'),
+            ),
+          ),
+          Card(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Nama Transaksi'),
+                    controller: titleController,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Nominal'),
+                    controller: amountController,
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text('Tambah Transaksi', style: TextStyle(color: Colors.blueAccent),),
+                  )
+                ],
+              ),
             ),
           ),
           Column(
@@ -70,7 +98,6 @@ class MyHomepage extends StatelessWidget {
                             //using string interpolation, so i can have a string from number type without adding toSring() function
                             '${tx.amount}',
                             // tx.amount.toString(),  <= example if i choose to use without string interpolation
-                        
                           ),
                         ],
                       ),
@@ -88,7 +115,7 @@ class MyHomepage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        tx.date.toString(),
+                        DateFormat.yMMMMEEEEd().format(tx.date),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
