@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   //TextEditingController agar input yang dimasukan langsung disimpan
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
   final Function addTx;
 
   NewTransaction(this.addTx);
+
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -17,9 +22,9 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    addTx(
-      titleController.text,
-      double.parse(amountController.text),
+    widget.addTx(
+      enteredTitle,
+      enteredAmount,
     );
   }
 
@@ -43,7 +48,7 @@ class NewTransaction extends StatelessWidget {
               onSubmitted: (_) => submitData,
             ),
             FlatButton(
-              onPressed: () => submitData,
+              onPressed: () => print(submitData),
               child: Text(
                 'Tambah Transaksi',
                 style: TextStyle(color: Colors.blueAccent),
