@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
+  
   //TextEditingController agar input yang dimasukan langsung disimpan
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
   final Function addTx;
 
   NewTransaction(this.addTx);
+
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount <=0 ){
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
 
-    addTx(
+    widget.addTx(
       titleController.text,
       double.parse(amountController.text),
     );
+
+    //its close the modal bottom shet when the value submitted
+    Navigator.of(context).pop();
   }
 
   @override
@@ -43,11 +53,11 @@ class NewTransaction extends StatelessWidget {
               onSubmitted: (_) => submitData,
             ),
             FlatButton(
-              onPressed: () => submitData,
               child: Text(
                 'Tambah Transaksi',
                 style: TextStyle(color: Colors.blueAccent),
               ),
+              onPressed: submitData,
             )
           ],
         ),
