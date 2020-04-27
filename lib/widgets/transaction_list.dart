@@ -12,20 +12,18 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 350,
       child: transactions.isEmpty
-          ? Center(
-            child: Container(
-                width: 150,
-                child: Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/empty_cart.png',
-                      fit: BoxFit.cover,
-                    ),
-                    Text("Belum ada pengeluaran")
-                  ],
-                ),
+          ? Container(
+              width: 150,
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/empty_cart.png',
+                    fit: BoxFit.cover,
+                  ),
+                  Text("Belum ada pengeluaran")
+                ],
               ),
-          )
+            )
           : ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (ctx, index) {

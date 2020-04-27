@@ -51,7 +51,8 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData,
             ),
-            FlatButton(
+            RaisedButton(
+              shape: StadiumBorder(),
               child: Text(
                 'Tambah Transaksi',
                 style: TextStyle(color: Theme.of(context).primaryColor),
