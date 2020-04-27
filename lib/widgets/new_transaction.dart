@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
-  
   //TextEditingController agar input yang dimasukan langsung disimpan
   final Function addTx;
 
@@ -55,7 +54,7 @@ class _NewTransactionState extends State<NewTransaction> {
             FlatButton(
               child: Text(
                 'Tambah Transaksi',
-                style: TextStyle(color: Colors.blueAccent),
+                style: TextStyle(color: Theme.of(context).primaryColor),
               ),
               onPressed: submitData,
             )

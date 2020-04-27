@@ -53,6 +53,7 @@ class TransactionList extends StatelessWidget {
                       DateFormat.yMMMMEEEEd().format(transactions[index].date),
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: 'Overpass',
                         color: Colors.grey,
                       ),
                     ),

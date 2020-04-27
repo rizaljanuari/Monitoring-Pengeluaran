@@ -12,6 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Expenses Planner App',
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        accentColor: Colors.amber,
+        fontFamily: 'Lato',
+      ),
       home: MyHomepage(),
     );
   }
@@ -81,7 +86,7 @@ class _MyHomepageState extends State<MyHomepage> {
             Container(
               width: double.infinity,
               child: Card(
-                color: Colors.blueAccent,
+                color: Theme.of(context).primaryColor,
                 child: Text('Chart'),
               ),
             ),
