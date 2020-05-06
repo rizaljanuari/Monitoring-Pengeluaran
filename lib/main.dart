@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
-import 'package:flutter/material.dart';
+import './widgets/chart.dart';
 import './models/transaction.dart';
-
 
 void main(List<String> args) => runApp(MyApp());
 
@@ -29,7 +29,6 @@ class MyHomepage extends StatefulWidget {
 
 class _MyHomepageState extends State<MyHomepage> {
   final List<Transaction> _userTransactions = [
-
     // Transaction(
     //   id: "tx1",
     //   amount: 350000,
@@ -48,8 +47,17 @@ class _MyHomepageState extends State<MyHomepage> {
     //   title: "Beli Thai Tea",
     //   date: DateTime.now(),
     // )
-
   ];
+
+  List<Transaction> get _recentTransaction {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
@@ -64,7 +72,6 @@ class _MyHomepageState extends State<MyHomepage> {
     });
   }
 
-
   //
   //  Function for showing modal bottom sheet
   //
@@ -72,9 +79,7 @@ class _MyHomepageState extends State<MyHomepage> {
     showModalBottomSheet(
       context: ctx,
       builder: (_) {
-
         return NewTransaction(_addNewTransaction);
-
       },
     );
   }
@@ -94,13 +99,7 @@ class _MyHomepageState extends State<MyHomepage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                child: Text('Chart'),
-              ),
-            ),
+            Chart(_recentTransaction),
             TransactionList(_userTransactions),
           ],
         ),
