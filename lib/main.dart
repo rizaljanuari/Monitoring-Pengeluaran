@@ -1,8 +1,8 @@
-import 'package:expenses_planner/widgets/transaction_list.dart';
-
+import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
 import './models/transaction.dart';
+
 
 void main(List<String> args) => runApp(MyApp());
 
@@ -29,6 +29,7 @@ class MyHomepage extends StatefulWidget {
 
 class _MyHomepageState extends State<MyHomepage> {
   final List<Transaction> _userTransactions = [
+
     // Transaction(
     //   id: "tx1",
     //   amount: 350000,
@@ -47,6 +48,7 @@ class _MyHomepageState extends State<MyHomepage> {
     //   title: "Beli Thai Tea",
     //   date: DateTime.now(),
     // )
+
   ];
 
   void _addNewTransaction(String title, double amount) {
@@ -62,11 +64,17 @@ class _MyHomepageState extends State<MyHomepage> {
     });
   }
 
+
+  //
+  //  Function for showing modal bottom sheet
+  //
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
       builder: (_) {
+
         return NewTransaction(_addNewTransaction);
+
       },
     );
   }
@@ -77,7 +85,10 @@ class _MyHomepageState extends State<MyHomepage> {
       appBar: AppBar(
         title: Text('My Expenses Planner'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.add), onPressed: () {}),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => _startAddNewTransaction(context),
+          ),
         ],
       ),
       body: SingleChildScrollView(
