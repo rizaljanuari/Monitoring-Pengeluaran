@@ -33,7 +33,7 @@ class Chart extends StatelessWidget {
     });
   }
 
-  double get maxSpending {
+  double get totalSpending {
     return groupedTransactionValues.fold(0.0, (sum, item) {
       return sum + item['amount'];
     });
@@ -44,12 +44,23 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6.0,
       margin: EdgeInsets.all(16.0),
-      child: Row(
-        children: groupedTransactionValues.map((data) {
-          // return Text('${data['day']} : ${data['amount']}');
-          return ChartBar(data['day'], data['amount'],
-              (data['amount'] as double) / maxSpending);
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                data['day'],
+                data['amount'],
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
